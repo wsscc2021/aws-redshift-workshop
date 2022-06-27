@@ -3,6 +3,7 @@ import random
 import uuid
 import json
 import time
+import copy
 
 CATEGORIES = {   # quantity, gender, ages  , season , quantity
     'T-shirts': {
@@ -295,8 +296,8 @@ class DataGenerator:
     def _convert_birthday(self, order: dict) -> dict:
         #
         # convert the customer birthday from datetime.datetime to string.
-        if type(order['customer']['birthday']) == datetime.datetime:
-            order['customer']['birthday'] = order['customer']['birthday'].strftime("%m/%d/%Y")
+        order = copy.deepcopy(order)
+        order['customer']['birthday'] = order['customer']['birthday'].strftime("%m/%d/%Y")
         return order
 
     def _generate_invoice_datetime(self, quantity: int, season_weights: list) -> list:
