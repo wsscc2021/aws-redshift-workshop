@@ -61,11 +61,9 @@
     - 50~59 (50대)
 
 
-## 데이터 전처리
+## 데이터 생성
 
-1. Data generate
-
-    ㅁ workflow
+1. 파일로써 생성
     
     - ./file_writer.py 프로그램을 실행시켜 데이터 분석에 사용되는 데이터를 생성합니다.
 
@@ -73,9 +71,16 @@
 
     - 생성된 데이터 파일을 s3 에 업로드 합니다.
 
-2. ETL
+2. Kinesis 스트림으로 전송
+
+    - Kinesis data stream을 `myStream` 이름으로 생성합니다. 
+
+    - ./kinesis_producer.py 프로그램을 실행시켜 데이터 분석에 사용되는 데이터를 지속적으로 실행합니다.
+
+
+## 데이터 전처리
     
-    ㅁ Purpose
+ㅁ Purpose
 
     - birthday(생년월일)과 invoice_datetime(주문시간)을 토대로 age(나이) 컬럼을 추가합니다.
 
@@ -83,7 +88,7 @@
 
     - 연령대별로 데이터를 구간화(binning) 합니다.
 
-    ㅁ workflow
+ㅁ workflow
     
     - AWS Glue Crawler를 통해서 Raw데이터에 대한 카탈로그 테이블을 생성합니다.
 
